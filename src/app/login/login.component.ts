@@ -10,9 +10,18 @@ import { UserService } from '../services/user.service';
 export class LoginComponent implements OnInit {
 
     // 2. Inject the service into the constructor
-    constructor(private userService: UserService) { 
-      // 3. Call the test method from the service
-     console.log(this.userService.test());
+    // constructor(private userService: UserService) { 
+    //   // 3. Call the test method from the service
+    //  console.log(this.userService.test());
+    // 
+
+    // Update the constructor so that it subscribes to the test method
+    constructor(private userService: UserService) {
+      this.userService.test().subscribe(
+        (response)=>{
+          console.log(response);
+        }
+      );
     }
 
   ngOnInit() {
